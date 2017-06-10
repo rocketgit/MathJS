@@ -58,8 +58,8 @@
 
   function rectCircleCollision(circle, rect)            // circle and rect are object with x, y, radius (only for circle), 
   {                                                     // width and height (only for rect).
-    var distX = Math.abs(circle.x - rect.x-rect.width/2);
-    var distY = Math.abs(circle.y - rect.y-rect.height/2);
+    var distX = abs(circle.x - rect.x-rect.width/2);
+    var distY = abs(circle.y - rect.y-rect.height/2);
 
     if (distX > (rect.width/2 + circle.radius)) { return false; };
     if (distY > (rect.height/2 + circle.radius)) { return false; };
