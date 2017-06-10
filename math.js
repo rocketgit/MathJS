@@ -4,7 +4,7 @@
   
   "use strict";
 
-  // Math functions
+  // Simple math functions
   function ceil(x) { return Math.ceil(x); };
   function round(x) { return Math.round(x); };
   function floor(x) { return Math.floor(x); };
@@ -54,5 +54,22 @@
   {                                                      // and the rect is an object with x, y, width and height parameters
     return inRange(x, rect.x, rect.x + rect.width) &&
            inRange(y, rect.y, rect.y + rect.height);
+  };
+
+  function rectCircleCollision(circle, rect)            // circle and rect are object with x, y, radius (only for circle), 
+  {                                                     // width and height (only for rect).
+    var distX = Math.abs(circle.x - rect.x-rect.width/2);
+    var distY = Math.abs(circle.y - rect.y-rect.height/2);
+
+    if (distX > (rect.width/2 + circle.radius)) { return false; };
+    if (distY > (rect.height/2 + circle.radius)) { return false; };
+
+    if (distX <= (rect.width/2)) { return true; };
+    if (distY <= (rect.height/2)) { return true; };
+
+    var dx = distX-rect.width/2;
+    var dy = distY-rect.height/2;
+   
+    return (dx*dx+dy*dy<=(circle.radius*circle.radius)); 
   };
   
