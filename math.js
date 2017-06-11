@@ -73,66 +73,15 @@
     return (dx*dx+dy*dy<=(circle.radius*circle.radius)); 
   };
 
- function lineIntersect(l1, l2) {                      // l1 and l2 are objects with x, y and toX, toY or X, Y or to.x, to.y
-		let x1 = l1.x, y1 = l1.y, x2 = l1.toX || l1.to.x || l1.X, 
-    y2 = l1.toY || l1.to.y || l1.Y, x3 = l2.x, y3 = l2.y,
-    x4 = l2.to.x || l2.toX || l2.X, y4 = l2.to.y || l2.toY || l2.Y;
-
-    var x=((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4))/((x1-x2)*(y3-y4)-(y1-y2)*(x3-x4));
-    var y=((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4))/((x1-x2)*(y3-y4)-(y1-y2)*(x3-x4));
-    if (isNaN(x) || isNaN(y)) {
-        return false;
-    } else {
-        if (x1>=x2) {
-            if (!(x2<=x&&x<=x1)) {return false;}
-        } else {
-            if (!(x1<=x&&x<=x2)) {return false;}
-        };
-        if (y1>=y2) {
-            if (!(y2<=y&&y<=y1)) {return false;}
-        } else {
-            if (!(y1<=y&&y<=y2)) {return false;}
-        };
-        if (x3>=x4) {
-            if (!(x4<=x&&x<=x3)) {return false;}
-        } else {
-            if (!(x3<=x&&x<=x4)) {return false;}
-        };
-        if (y3>=y4) {
-            if (!(y4<=y&&y<=y3)) {return false;}
-        } else {
-            if (!(y3<=y&&y<=y4)) {return false;}
-        };
-    };
-    return true;
-};
-  
- function lineIntersectXY(x1, y1, x2, y2, x3, y3, x4, y4) {
-    var x=((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4))/((x1-x2)*(y3-y4)-(y1-y2)*(x3-x4));
-    var y=((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4))/((x1-x2)*(y3-y4)-(y1-y2)*(x3-x4));
-    if (isNaN(x)||isNaN(y)) {
-        return false;
-    } else {
-        if (x1>=x2) {
-            if (!(x2<=x&&x<=x1)) {return false;}
-        } else {
-            if (!(x1<=x&&x<=x2)) {return false;}
-        };
-        if (y1>=y2) {
-            if (!(y2<=y&&y<=y1)) {return false;}
-        } else {
-            if (!(y1<=y&&y<=y2)) {return false;}
-        };
-        if (x3>=x4) {
-            if (!(x4<=x&&x<=x3)) {return false;}
-        } else {
-            if (!(x3<=x&&x<=x4)) {return false;}
-        };
-        if (y3>=y4) {
-            if (!(y4<=y&&y<=y3)) {return false;}
-        } else {
-            if (!(y3<=y&&y<=y4)) {return false;}
-        };
-    };
-    return true;
-};
+  /*
+  In this function:
+  	@param r - first line x,
+	@param e - first line y,
+	@param i - first line toX,
+	@param f - first line toY.
+	@params n, t, u, s are the second line's parameters, line r, e, i, f.
+  */
+  function lineIntersectXY(r,e,i,f,n,t,u,s){var l=((r*f-e*i)*(n-u)-(r-i)*(n*s-t*u))/((r-i)*(t-s)-(e-f)*(n-u)),N=((r*f-e*i)*(t-s)-(e-f)*
+  (n*s-t*u))/((r-i)*(t-s)-(e-f)*(n-u));if(isNaN(l)||isNaN(N))return!1;if(r>=i){if(!(i<=l&&l<=r))return!1}else if(!(r<=l&&l<=i))return!1;
+  if(e>=f){if(!(f<=N&&N<=e))return!1}else if(!(e<=N&&N<=f))return!1;if(n>=u){if(!(u<=l&&l<=n))return!1}else if(!(n<=l&&l<=u))return!1;
+  if(t>=s){if(!(s<=N&&N<=t))return!1}else if(!(t<=N&&N<=s))return!1;return!0};
